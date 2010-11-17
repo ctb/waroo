@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% import 'forms.html' as forms %}
+
+{% block content %}
+
+<form action='search' method='POST'>
+Search for another gene: {{ forms.input('q', size=40, value=q) }}
+</form>
+<p>
+<hr>
+
+<h2>Gene UID: {{ acc }}</h2>
+<p>
+<b>Summary:</b> {{ oneline }}
+<p>
+<b>Description:</b>
+<blockquote>
+{% if content.strip() %}
+{{ content }}
+{% else %}
+<i>No annotation information yet.</i>
+{% endif %}
+</blockquote>
+<a href='edit?acc={{ acc|e }}'>edit annotation information</a>
+</p>
+
+{% endblock %}

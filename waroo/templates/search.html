@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% import 'forms.html' as forms %}
+
+{% block content %}
+<center>
+<h3>Keyword search:</h3>
+<p>
+<form>
+{{ forms.input('q', size=30, value=q) }}
+<p>
+{{ forms.submit('search') }}<br>
+e.g. <i>(evo* AND NOT development) OR ecology</i>
+<p>
+</form>
+{% if q %}
+{{ hit_result }}
+{% endif %}
+</center>
+
+{% if hits %}
+ <h2>Search results</h2>
+ <ul>
+ {% for (url, name, hit) in hits %}
+    <li> <a href='{{url}}'>{{ name }}</a>
+ {% endfor %}
+ </ul>
+{% else %}
+{% if not q %}
+<center>
+<b>- OR -</b><p>
+Select a tag to see faculty and projects with that tag.
+<p>
+{% for tag in taglist %}
+<a href='display_by_tag?tags={{ tag|e }}'>{{ tag }}</a> |
+{% endfor %}
+</center>
+{% endif %}
+{% endif %}
+<p>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import 'forms.html' as forms %}
+
+{% block head_js %}
+{% endblock %}
+
+{% block content %}
+
+<h2>Gene UID: {{ acc }}</h2>
+<p>
+<form method="post" action="save">
+{{ forms.hidden('acc', value=acc) }}
+One-line description: {{ forms.input('oneline', size=60, value=oneline) }}
+<p>
+<textarea id="content" name="content" class="tinymce" style="width:100%">{{ content|e }}</textarea>
+<input type='submit' value='save'>
+</form>
+</p>
+
+{% endblock %}

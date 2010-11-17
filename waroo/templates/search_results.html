@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import 'forms.html' as forms %}
+
+{% block content %}
+
+<form action='search' method='POST'>
+Another query: {{ forms.input('q', size=40, value=q) }}
+</form>
+<hr>
+<p>
+
+<h2>Search results: "{{ q }}"</h2>
+
+<p>
+
+{% if results %}
+{{ results|length }} results.
+<p>
+  {% for path, descr in results %}
+   {{ loop.index}}. <a href='display?acc={{ path|e }}'>{{ path }}</a> - {{ descr }}<p>
+  {% endfor %}
+{% else %}
+No results!
+{% endif %}
+
+{% endblock %}

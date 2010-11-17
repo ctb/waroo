@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import 'forms.html' as forms %}
+
+{% block content %}
+
+<h2>Search existing descriptions and annotations</h2>
+<p>
+<form action='search' method='POST'>
+Enter search string: {{ forms.input('q', size=40) }}
+</form>
+<blockquote>
+For example,
+<p>
+<A href='search?q=transcription%20sox'>"transcription sox"</a>
+<p>
+<A href='search?q=transcription%20and%20sox%20and%20xenopus'>"transcription and sox and xenopus"</a>
+<p>
+<A href='search?q=transcription%20and%20sox%20and%20not%20xenopus'>"transcription and sox and not xenopus"</a>
+</blockquote>
+
+{% endblock %}
